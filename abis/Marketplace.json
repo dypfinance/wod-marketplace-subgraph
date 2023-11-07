@@ -1,0 +1,552 @@
+[
+  { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "buyer",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "nftAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "enum Marketplace.PaymentType",
+            "name": "paymentType",
+            "type": "uint8"
+          },
+          { "internalType": "address", "name": "token", "type": "address" }
+        ],
+        "indexed": false,
+        "internalType": "struct Marketplace.Payment",
+        "name": "payment",
+        "type": "tuple"
+      }
+    ],
+    "name": "ItemBought",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "nftAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "enum Marketplace.PaymentType",
+            "name": "paymentType",
+            "type": "uint8"
+          },
+          { "internalType": "address", "name": "token", "type": "address" }
+        ],
+        "indexed": false,
+        "internalType": "struct Marketplace.Payment",
+        "name": "payment",
+        "type": "tuple"
+      }
+    ],
+    "name": "ItemCanceled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "seller",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "nftAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "enum Marketplace.PaymentType",
+            "name": "paymentType",
+            "type": "uint8"
+          },
+          { "internalType": "address", "name": "token", "type": "address" }
+        ],
+        "indexed": false,
+        "internalType": "struct Marketplace.Payment",
+        "name": "payment",
+        "type": "tuple"
+      }
+    ],
+    "name": "ItemListed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "buyer",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "nftAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "enum Marketplace.PaymentType",
+            "name": "paymentType",
+            "type": "uint8"
+          },
+          { "internalType": "address", "name": "token", "type": "address" }
+        ],
+        "indexed": false,
+        "internalType": "struct Marketplace.Payment",
+        "name": "payment",
+        "type": "tuple"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "offerIndex",
+        "type": "uint256"
+      }
+    ],
+    "name": "OfferCanceled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "buyer",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "nftAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "enum Marketplace.PaymentType",
+            "name": "paymentType",
+            "type": "uint8"
+          },
+          { "internalType": "address", "name": "token", "type": "address" }
+        ],
+        "indexed": false,
+        "internalType": "struct Marketplace.Payment",
+        "name": "payment",
+        "type": "tuple"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "offerIndex",
+        "type": "uint256"
+      }
+    ],
+    "name": "OfferMade",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "buyer",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "nftAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newPrice",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "enum Marketplace.PaymentType",
+            "name": "paymentType",
+            "type": "uint8"
+          },
+          { "internalType": "address", "name": "token", "type": "address" }
+        ],
+        "indexed": false,
+        "internalType": "struct Marketplace.Payment",
+        "name": "payment",
+        "type": "tuple"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "offerIndex",
+        "type": "uint256"
+      }
+    ],
+    "name": "OfferUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "WETH",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "nftAddress", "type": "address" },
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "internalType": "uint256", "name": "offerIndex", "type": "uint256" }
+    ],
+    "name": "acceptOffer",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "nftAddress", "type": "address" },
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      {
+        "components": [
+          {
+            "internalType": "enum Marketplace.PaymentType",
+            "name": "paymentType",
+            "type": "uint8"
+          },
+          { "internalType": "address", "name": "token", "type": "address" }
+        ],
+        "internalType": "struct Marketplace.Payment",
+        "name": "payment",
+        "type": "tuple"
+      }
+    ],
+    "name": "buyItem",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "nftAddress", "type": "address" },
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "cancelListing",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "nftAddress", "type": "address" },
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "internalType": "uint256", "name": "offerIndex", "type": "uint256" }
+    ],
+    "name": "cancelOffer",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "nftAddress", "type": "address" },
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "getActiveOffers",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "price", "type": "uint256" },
+          { "internalType": "address", "name": "buyer", "type": "address" },
+          {
+            "components": [
+              {
+                "internalType": "enum Marketplace.PaymentType",
+                "name": "paymentType",
+                "type": "uint8"
+              },
+              { "internalType": "address", "name": "token", "type": "address" }
+            ],
+            "internalType": "struct Marketplace.Payment",
+            "name": "payment",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct Marketplace.Offer[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "nftAddress", "type": "address" },
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "getListing",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "price", "type": "uint256" },
+          { "internalType": "address", "name": "seller", "type": "address" },
+          {
+            "components": [
+              {
+                "internalType": "enum Marketplace.PaymentType",
+                "name": "paymentType",
+                "type": "uint8"
+              },
+              { "internalType": "address", "name": "token", "type": "address" }
+            ],
+            "internalType": "struct Marketplace.Payment",
+            "name": "payment",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "nftAddress",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct Marketplace.NFT",
+            "name": "nft",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct Marketplace.Listing",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "nftAddress", "type": "address" },
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "internalType": "uint256", "name": "price", "type": "uint256" },
+      {
+        "components": [
+          {
+            "internalType": "enum Marketplace.PaymentType",
+            "name": "paymentType",
+            "type": "uint8"
+          },
+          { "internalType": "address", "name": "token", "type": "address" }
+        ],
+        "internalType": "struct Marketplace.Payment",
+        "name": "payment",
+        "type": "tuple"
+      }
+    ],
+    "name": "listItem",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "listingCounter",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "nftAddress", "type": "address" },
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "internalType": "uint256", "name": "price", "type": "uint256" },
+      {
+        "components": [
+          {
+            "internalType": "enum Marketplace.PaymentType",
+            "name": "paymentType",
+            "type": "uint8"
+          },
+          { "internalType": "address", "name": "token", "type": "address" }
+        ],
+        "internalType": "struct Marketplace.Payment",
+        "name": "payment",
+        "type": "tuple"
+      }
+    ],
+    "name": "makeOffer",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "newOwner", "type": "address" }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "nftAddress", "type": "address" },
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "internalType": "uint256", "name": "offerIndex", "type": "uint256" },
+      { "internalType": "uint256", "name": "newPrice", "type": "uint256" },
+      {
+        "components": [
+          {
+            "internalType": "enum Marketplace.PaymentType",
+            "name": "paymentType",
+            "type": "uint8"
+          },
+          { "internalType": "address", "name": "token", "type": "address" }
+        ],
+        "internalType": "struct Marketplace.Payment",
+        "name": "newPayment",
+        "type": "tuple"
+      }
+    ],
+    "name": "updateOffer",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
