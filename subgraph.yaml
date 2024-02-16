@@ -1,0 +1,63 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: OpenFlux
+    network: mainnet
+    source:
+      address: "0x537DC4fee298Ea79A7F65676735415f1E2882F92"
+      abi: OpenFlux
+      startBlock: 89718605
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - CollectionAdded
+        - CollectionEdited
+        - CollectionOfferAccepted
+        - CollectionOfferCancelled
+        - CollectionOfferMade
+        - CollectionRemoved
+        - ListingCancelled
+        - ListingEdited
+        - NFTListed
+        - NFTPurchased
+        - OfferAcceptedForNFT
+        - OfferCancelledForNFT
+        - OfferMadeForNFT
+        - OwnershipTransferred
+      abis:
+        - name: OpenFlux
+          file: ./abis/OpenFlux.json
+      eventHandlers:
+        - event: CollectionAdded(indexed address,address)
+          handler: handleCollectionAdded
+        - event: CollectionEdited(indexed address,address)
+          handler: handleCollectionEdited
+        - event: CollectionOfferAccepted(indexed address,indexed address,address,uint256,uint256,address)
+          handler: handleCollectionOfferAccepted
+        - event: CollectionOfferCancelled(indexed address,indexed address)
+          handler: handleCollectionOfferCancelled
+        - event: CollectionOfferMade(indexed address,indexed address,uint256,address)
+          handler: handleCollectionOfferMade
+        - event: CollectionRemoved(indexed address)
+          handler: handleCollectionRemoved
+        - event: ListingCancelled(indexed address,indexed uint256)
+          handler: handleListingCancelled
+        - event: ListingEdited(indexed address,indexed uint256,uint256)
+          handler: handleListingEdited
+        - event: NFTListed(indexed address,indexed uint256,indexed address,uint256,address)
+          handler: handleNFTListed
+        - event: NFTPurchased(indexed address,indexed uint256,indexed address,address,address,uint256)
+          handler: handleNFTPurchased
+        - event: OfferAcceptedForNFT(indexed address,indexed uint256,indexed address,address,uint256,address)
+          handler: handleOfferAcceptedForNFT
+        - event: OfferCancelledForNFT(indexed address,indexed uint256,indexed address)
+          handler: handleOfferCancelledForNFT
+        - event: OfferMadeForNFT(indexed address,indexed uint256,indexed address,uint256,address)
+          handler: handleOfferMadeForNFT
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+      file: ./src/open-flux.ts
